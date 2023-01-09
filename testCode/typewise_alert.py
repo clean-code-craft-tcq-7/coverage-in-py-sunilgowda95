@@ -1,0 +1,17 @@
+def test(self):
+    import temperature_breach as tb
+    self.assertEqual(tb.get_limits_from_coolinType('PASSIVE_COOLING'), (0,35))
+    self.assertEqual(tb.get_limits_from_coolinType('HI_ACTIVE_COOLING'), (0,45))
+    self.assertEqual(tb.get_limits_from_coolinType('MED_ACTIVE_COOLING'), (0,40))
+    self.assertEqual(tb.check_classify_temperature_breach('PASSIVE_COOLING',-1), 'TOO_LOW')
+    self.assertEqual(tb.check_classify_temperature_breach('PASSIVE_COOLING',0), 'NORMAL')
+    self.assertEqual(tb.check_classify_temperature_breach('PASSIVE_COOLING',35), 'NORMAL')
+    self.assertEqual(tb.check_classify_temperature_breach('PASSIVE_COOLING',36), 'TOO_HIGH')
+    self.assertEqual(tb.check_classify_temperature_breach('HI_ACTIVE_COOLING',-1), 'TOO_LOW')
+    self.assertEqual(tb.check_classify_temperature_breach('HI_ACTIVE_COOLING',0), 'NORMAL')
+    self.assertEqual(tb.check_classify_temperature_breach('HI_ACTIVE_COOLING',45), 'NORMAL')
+    self.assertEqual(tb.check_classify_temperature_breach('HI_ACTIVE_COOLING',46), 'TOO_HIGH')
+    self.assertEqual(tb.check_classify_temperature_breach('MED_ACTIVE_COOLING',-1), 'TOO_LOW')
+    self.assertEqual(tb.check_classify_temperature_breach('MED_ACTIVE_COOLING',0), 'NORMAL')
+    self.assertEqual(tb.check_classify_temperature_breach('MED_ACTIVE_COOLING',40), 'NORMAL')
+    self.assertEqual(tb.check_classify_temperature_breach('MED_ACTIVE_COOLING',41), 'TOO_HIGH')
